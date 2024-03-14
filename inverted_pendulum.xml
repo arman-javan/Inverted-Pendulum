@@ -1,0 +1,28 @@
+﻿<mujoco model="Inverted Pendulum">
+	<asset>
+		<texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+		<material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+	</asset>
+	
+	<worldbody>
+		<geom type="plane" size="0 0 0.1" material="grid"/>
+		<light directional="false" pos="0 0 10" dir="0 0 -1" diffuse="1 1 1" active="true"/>
+
+		<body pos="0 0 0.01">
+			<geom type="box" size="0.2 0.1 0.01" rgba="0.8 0.8 0.8 1.0"/>
+			<joint name="slide" type="slide" pos="0 0 -0.25" axis="1 0 0"/>
+
+			<body pos="0.0 0.0 0.12">
+				<geom type="capsule" size="0.01 0.1"/>
+				<joint type="hinge" pos="0.0 0.0 -0.12" axis="0 1 0"/>
+			</body>
+			
+		</body>
+		
+	</worldbody>
+
+	<actuator>
+		<general joint="slide" ctrlrange="-100 100"/>
+	</actuator>
+	
+</mujoco>
